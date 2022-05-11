@@ -6,8 +6,15 @@ pipeline {
         maven "MVN3"
         jdk "jdk8"
     }
-
+  
     stages {
+        stage("Ennable webhook") {
+            steps {
+                script {
+                    properties([pipelineTriggers([githubPush()])])
+                }
+            }
+        }
         
         stage('pullscm') {
             steps {
